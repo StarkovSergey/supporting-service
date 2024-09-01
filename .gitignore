@@ -13,6 +13,10 @@
 /.next/
 /out/
 
+# editor
+/.vscode
+/.idea
+
 # production
 /build
 
