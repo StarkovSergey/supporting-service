@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { PersonStandingIcon } from 'lucide-react'
+import { CalendarIcon, PersonStandingIcon } from 'lucide-react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -31,6 +31,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Popover, PopoverTrigger } from '@/components/ui/popover'
 
 const formSchema = z
   .object({
@@ -154,6 +155,29 @@ export default function SignUp() {
                   />
                 </>
               )}
+              <FormField
+                control={form.control}
+                name="dob"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col pt-2">
+                    <FormLabel>Date of birth</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className="normal-case flex justify-between pr-1">
+                            <span>Pick a date</span>
+                            <CalendarIcon />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <Button type="submit">Sign up</Button>
             </form>
           </Form>
