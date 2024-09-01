@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/select'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Calendar } from '@/components/ui/calendar'
+import { format } from 'date-fns'
 
 const formSchema = z
   .object({
@@ -168,7 +169,7 @@ export default function SignUp() {
                           <Button
                             variant="outline"
                             className="normal-case flex justify-between pr-1">
-                            <span>Pick a date</span>
+                            {!!field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
                             <CalendarIcon />
                           </Button>
                         </FormControl>
