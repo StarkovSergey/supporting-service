@@ -31,7 +31,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Popover, PopoverTrigger } from '@/components/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Calendar } from '@/components/ui/calendar'
 
 const formSchema = z
   .object({
@@ -172,6 +173,19 @@ export default function SignUp() {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
+                      <PopoverContent align="start" className="w-auto p-0">
+                        <Calendar
+                          mode="single"
+                          defaultMonth={field.value}
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          fixedWeeks
+                          weekStartsOn={1} // начинаем с Monday
+                          fromYear={1900}
+                          toDate={new Date()}
+                          captionLayout="dropdown-buttons" //dropdown-buttons работают только с from и to
+                        />
+                      </PopoverContent>
                     </Popover>
                     <FormMessage />
                   </FormItem>
