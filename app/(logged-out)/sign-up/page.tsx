@@ -35,6 +35,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar'
 import { format } from 'date-fns'
 import { PasswordInput } from '@/components/ui/password-input'
+import { Checkbox } from '@/components/ui/checkbox'
 
 const formSchema = z
   .object({
@@ -42,6 +43,11 @@ const formSchema = z
     accountType: z.enum(['personal', 'company']),
     companyName: z.string().optional(),
     numberOfEmployees: z.coerce.number().optional(),
+    acceptTerms: z
+      .boolean({
+        required_error: 'You must accept the terms and conditions',
+      })
+      .refine((checked) => checked, 'You must accept the terms and conditions'),
     dob: z.date().refine((date) => {
       // если вернёт true, значит валидация не прошла и будет добавлена ошибка
       const today = new Date()
@@ -89,12 +95,15 @@ export default function SignUp() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      email: '', // тут добавь начальные значения для всех полей
+      companyName: '',
+      password: '',
+      passwordConfirm: '',
     },
   })
 
-  const handleSubmit = () => {
-    console.log('login validation passed')
+  const handleSubmit = (data: z.infer<typeof formSchema>) => {
+    console.log('login validation passed: ', data)
   }
 
   const accountType = form.watch('accountType')
@@ -166,7 +175,13 @@ export default function SignUp() {
                       <FormItem>
                         <FormLabel>Employees</FormLabel>
                         <FormControl>
-                          <Input type="number" min={0} placeholder="Employees" {...field} />
+                          <Input
+                            type="number"
+                            min={0}
+                            placeholder="Employees"
+                            {...field}
+                            value={field.value ?? ''}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -239,6 +254,27 @@ export default function SignUp() {
                         {...field}
                       />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="acceptTerms"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex gap-2 items-center">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange}></Checkbox>
+                      </FormControl>
+                      <FormLabel>I accept the terms and conditions</FormLabel>
+                    </div>
+                    <FormDescription>
+                      By signing up, you agree to our{' '}
+                      <Link href="/terms" className="text-primary hover:underline">
+                        terms and conditions
+                      </Link>
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
