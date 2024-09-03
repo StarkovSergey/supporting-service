@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -77,9 +78,8 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="john@doe.com"
+                      <PasswordInput
+                        placeholder="••••••••"
                         autoComplete="current-password"
                         {...field}
                       />

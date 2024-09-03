@@ -34,6 +34,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Calendar } from '@/components/ui/calendar'
 import { format } from 'date-fns'
+import { PasswordInput } from '@/components/ui/password-input'
 
 const formSchema = z
   .object({
@@ -215,10 +216,9 @@ export default function SignUp() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
+                      <PasswordInput
                         placeholder="••••••••"
-                        type="password"
-                        autoComplete="email"
+                        autoComplete="new-password"
                         {...field}
                       />
                     </FormControl>
@@ -233,10 +233,9 @@ export default function SignUp() {
                   <FormItem>
                     <FormLabel>Confirm password</FormLabel>
                     <FormControl>
-                      <Input
+                      <PasswordInput
                         placeholder="••••••••"
-                        type="password"
-                        autoComplete="email"
+                        autoComplete="current-password"
                         {...field}
                       />
                     </FormControl>
