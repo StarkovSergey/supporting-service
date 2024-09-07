@@ -16,14 +16,16 @@ export default function MenuItem({ children, href }: Props) {
   const isActive = pathname === href
 
   return (
-    <Link
-      className={cn(
-        'block rounded-md p-2 text-muted-foreground hover:bg-white hover:text-foreground dark:hover:bg-zinc-700',
-        isActive &&
-          'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary'
-      )}
-      href={href}>
-      {children}
-    </Link>
+    <li>
+      <Link
+        className={cn(
+          'block rounded-md p-2 text-muted-foreground hover:bg-white hover:text-foreground dark:hover:bg-zinc-700',
+          isActive &&
+            'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary'
+        )}
+        href={href}>
+        {children}
+      </Link>
+    </li>
   )
 }
