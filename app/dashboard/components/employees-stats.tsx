@@ -2,12 +2,16 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import {
   AlertTriangleIcon,
   BadgeCheckIcon,
+  PartyPopperIcon,
   UserCheckIcon,
   UserIcon,
   UserRoundXIcon,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import cm from '@/public/images/cm.jpg'
+import Image from 'next/image'
 
 export function EmployeesStats() {
   const totalEmployees = 100
@@ -57,10 +61,21 @@ export function EmployeesStats() {
           )}
         </CardFooter>
       </Card>
-      <Card className="border-pink-500">
+      <Card className="flex flex-col border-pink-500">
         <CardHeader className="pb-2">
           <CardTitle className="text-base">Employee of the month</CardTitle>
         </CardHeader>
+        <CardContent className="flex items-center gap-2">
+          <Avatar>
+            <Image src={cm} alt="Employee of the month" />
+            <AvatarFallback>BM</AvatarFallback>
+          </Avatar>
+          <span className="text-2xl">Brendan Morris!</span>
+        </CardContent>
+        <CardFooter className="mt-auto flex items-center gap-2 text-muted-foreground">
+          <PartyPopperIcon className="text-pink-500" />
+          <span>Congratulations, Brendan!</span>
+        </CardFooter>
       </Card>
     </div>
   )
