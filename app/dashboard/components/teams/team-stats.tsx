@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ListCheckIcon, PieChart, StarIcon, UsersIcon } from 'lucide-react'
+import { ListCheckIcon, PieChart, PieChartIcon, StarIcon, UsersIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import cm from '@/public/images/cm.jpg'
@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import Image from 'next/image'
 import TeamDistributionChart from '@/app/dashboard/components/teams/team-distrubution-chart'
+import { SupportTicketsResolved } from '@/app/dashboard/components/teams/support-tickets-resolved'
 
 const teamLeaders = [
   {
@@ -105,10 +106,10 @@ export function TeamsStats() {
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center justify-between text-base">
               <span>Team distribution</span>
-              <PieChart />
+              <PieChartIcon />
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex items-center gap-2">
+          <CardContent className="pb-0">
             <TeamDistributionChart />
           </CardContent>
         </Card>
@@ -119,7 +120,9 @@ export function TeamsStats() {
             <ListCheckIcon />
             <span>Support tickets resolved</span>
           </CardTitle>
-          <CardContent className="pl-0">line graph</CardContent>
+          <CardContent className="pl-0">
+            <SupportTicketsResolved />
+          </CardContent>
         </CardHeader>
       </Card>
     </>
